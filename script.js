@@ -1,5 +1,5 @@
 
-    var voices = window.speechSynthesis.getVoices();
+var voices = window.speechSynthesis.getVoices();
 
 
 var vowel=['a','e','i','o','u','y'];
