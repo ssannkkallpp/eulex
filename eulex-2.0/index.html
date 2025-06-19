@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EULEX 2.0 - Modern reading assistance tool for learning to read with syllable splitting and text-to-speech">
+    <meta name="keywords" content="reading, education, literacy, text-to-speech, syllables">
+    <title>EULEX 2.0 - Learn to Read</title>
+    
+    <!-- Modern CSS Framework -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Modern Button Library -->
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/buttons@2.0.0/css/buttons.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Fonts - Lato for excellent readability -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen font-['Lato']">
+    <!-- Language Selection Modal -->
+    <div id="languageModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-8 border border-gray-200">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-globe text-white text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 font-['Lato']" data-i18n="welcome">Welcome to EULEX 2.0</h2>
+                <p class="text-gray-600 mt-2" data-i18n="select-language">Please select your preferred language</p>
+            </div>
+            
+            <div class="space-y-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="native-language">Native Language</label>
+                <select id="languageSelect" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <option value="en">English</option>
+                    <option value="es">Español (Spanish)</option>
+                    <option value="fr">Français (French)</option>
+                    <option value="de">Deutsch (German)</option>
+                    <option value="it">Italiano (Italian)</option>
+                    <option value="pt">Português (Portuguese)</option>
+                    <option value="ru">Русский (Russian)</option>
+                    <option value="zh">中文 (Chinese)</option>
+                    <option value="ja">日本語 (Japanese)</option>
+                    <option value="ko">한국어 (Korean)</option>
+                    <option value="ar">العربية (Arabic)</option>
+                    <option value="hi">हिन्दी (Hindi)</option>
+                    <option value="bn">বাংলা (Bengali)</option>
+                    <option value="ur">اردو (Urdu)</option>
+                    <option value="tr">Türkçe (Turkish)</option>
+                    <option value="nl">Nederlands (Dutch)</option>
+                    <option value="sv">Svenska (Swedish)</option>
+                    <option value="no">Norsk (Norwegian)</option>
+                    <option value="da">Dansk (Danish)</option>
+                    <option value="fi">Suomi (Finnish)</option>
+                </select>
+                
+                <button id="startApp" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-play mr-2"></i>
+                    <span data-i18n="start-learning">Start Learning</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-gray-300 shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-book-open text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900 font-['Lato']">EULEX 2.0</h1>
+                        <p class="text-sm text-gray-600" data-i18n="enhanced-learning">Enhanced Learning Experience</p>
+                    </div>
+                </div>
+                
+                <nav class="hidden md:flex items-center space-x-6">
+                    <button id="languageBtn" class="text-gray-600 hover:text-blue-600 transition-colors" title="Change Language">
+                        <i class="fas fa-language text-lg"></i>
+                    </button>
+                    <button id="settingsBtn" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-cog text-lg"></i>
+                    </button>
+                    <button id="helpBtn" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-question-circle text-lg"></i>
+                    </button>
+                    <button id="fullscreenBtn" class="text-gray-600 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-expand text-lg"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Story Selection Panel -->
+        <div id="storySelection" class="mb-8">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4 font-['Lato']" data-i18n="choose-story">Choose a Story</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="storyGrid">
+                    <!-- Stories will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Reading Interface -->
+        <div id="readingInterface" class="hidden">
+            <!-- Story Header -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 id="storyTitle" class="text-2xl font-bold text-gray-900 mb-2 font-['Lato']"></h2>
+                        <div class="flex items-center space-x-4 text-sm text-gray-600">
+                            <span id="wordCount" data-i18n="words">0 words</span>
+                            <span id="currentPosition">0 / 0</span>
+                            <span id="readingTime" data-i18n="est-time">Est. 0 min</span>
+                        </div>
+                    </div>
+                    <button id="backToStories" class="btn btn-outline btn-primary">
+                        <i class="fas fa-arrow-left mr-2"></i>
+                        <span data-i18n="back-to-stories">Back to Stories</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Reading Area -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <!-- Main Text Area -->
+                <div class="lg:col-span-3">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                        <div id="storyText" class="text-lg leading-relaxed text-gray-800 min-h-[400px] font-['Lato']">
+                            <!-- Story text will be populated here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control Panel -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 space-y-6">
+                        <!-- Current Word Display -->
+                        <div class="text-center">
+                            <h3 class="text-sm font-medium text-gray-600 mb-2" data-i18n="current-word">Current Word</h3>
+                            <div id="currentWord" class="text-2xl font-bold text-gray-900 mb-2 font-['Lato']"></div>
+                        </div>
+
+                        <!-- Syllable Widget -->
+                        <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                            <h3 class="text-sm font-medium text-blue-800 mb-3 flex items-center">
+                                <i class="fas fa-cut mr-2"></i>
+                                <span data-i18n="syllable-breakdown">Syllable Breakdown</span>
+                            </h3>
+                            <div id="syllableWidget" class="text-center">
+                                <div id="syllableDisplay" class="text-lg text-blue-900 font-medium mb-2"></div>
+                                <div class="text-xs text-blue-600">
+                                    <i class="fas fa-info-circle mr-1"></i>
+                                    <span data-i18n="click-syllables">Click syllables to hear pronunciation</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Audio Controls -->
+                        <div class="space-y-3">
+                            <button id="playPauseBtn" class="btn btn-primary btn-lg w-full">
+                                <i class="fas fa-volume-up mr-3 text-xl"></i>
+                                <span data-i18n="hear-word">Hear Word</span>
+                            </button>
+                            <button id="playSentenceBtn" class="btn btn-success btn-lg w-full">
+                                <i class="fas fa-play-circle mr-3 text-xl"></i>
+                                <span data-i18n="hear-sentence">Hear Sentence</span>
+                            </button>
+                        </div>
+
+                        <!-- Navigation Controls -->
+                        <div class="space-y-3">
+                            <div class="flex space-x-2">
+                                <button id="prevWordBtn" class="btn btn-outline btn-secondary flex-1">
+                                    <i class="fas fa-chevron-left text-lg"></i>
+                                </button>
+                                <button id="nextWordBtn" class="btn btn-outline btn-secondary flex-1">
+                                    <i class="fas fa-chevron-right text-lg"></i>
+                                </button>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button id="prevSentenceBtn" class="btn btn-outline btn-info flex-1">
+                                    <i class="fas fa-arrow-left mr-2"></i>
+                                    <span data-i18n="previous">Previous</span>
+                                </button>
+                                <button id="nextSentenceBtn" class="btn btn-outline btn-info flex-1">
+                                    <span data-i18n="next">Next</span>
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                <span data-i18n="progress">Progress</span>
+                                <span id="progressPercent">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div id="progressBar" class="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Settings -->
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-medium text-gray-600 flex items-center">
+                                <i class="fas fa-tachometer-alt mr-2"></i>
+                                <span data-i18n="reading-speed">Reading Speed</span>
+                            </h4>
+                            <input type="range" id="speedSlider" min="0.5" max="2" step="0.1" value="1" class="w-full">
+                            <div class="flex justify-between text-xs text-gray-500">
+                                <span><i class="fas fa-snail mr-1"></i><span data-i18n="slow">Slow</span></span>
+                                <span id="speedValue">1x</span>
+                                <span><span data-i18n="fast">Fast</span><i class="fas fa-bolt ml-1"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full p-6 border border-gray-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900 font-['Lato']" data-i18n="settings">Settings</h3>
+                    <button id="closeSettings" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="language">Language</label>
+                        <select id="settingsLanguageSelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <!-- Languages will be populated -->
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="voice">Voice</label>
+                        <select id="voiceSelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <!-- Voices will be populated -->
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="font-size">Font Size</label>
+                        <input type="range" id="fontSizeSlider" min="14" max="24" step="1" value="18" class="w-full">
+                        <div class="flex justify-between text-xs text-gray-500">
+                            <span data-i18n="small">Small</span>
+                            <span id="fontSizeValue">18px</span>
+                            <span data-i18n="large">Large</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2" data-i18n="theme">Theme</label>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button class="theme-btn bg-white border-2 border-gray-300 rounded-lg p-2 text-xs" data-theme="light" data-i18n="light">Light</button>
+                            <button class="theme-btn bg-gray-800 text-white rounded-lg p-2 text-xs" data-theme="dark" data-i18n="dark">Dark</button>
+                            <button class="theme-btn bg-yellow-50 border-2 border-yellow-300 rounded-lg p-2 text-xs" data-theme="sepia" data-i18n="sepia">Sepia</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6 border border-gray-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900 font-['Lato']" data-i18n="how-to-use">How to Use EULEX 2.0</h3>
+                    <button id="closeHelp" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="space-y-4 text-sm text-gray-600">
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-2 font-['Lato']" data-i18n="getting-started">Getting Started</h4>
+                        <p data-i18n="getting-started-desc">Choose a story from the selection panel. Stories are organized by difficulty level.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-2 font-['Lato']" data-i18n="navigation">Navigation</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li data-i18n="nav-arrows">Use arrow buttons to navigate word by word</li>
+                            <li data-i18n="nav-spacebar">Press Spacebar to move to the next word</li>
+                            <li data-i18n="nav-click">Click on any word to jump to it</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-2 font-['Lato']" data-i18n="audio-features">Audio Features</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li data-i18n="audio-word">Click the speaker icon to hear the current word pronounced</li>
+                            <li data-i18n="audio-sentence">Click the play icon to hear the entire sentence</li>
+                            <li data-i18n="audio-speed">Adjust reading speed using the slider</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-medium text-gray-900 mb-2 font-['Lato']" data-i18n="syllable-display">Syllable Display</h4>
+                        <p data-i18n="syllable-desc">Each word is automatically split into syllables to help with pronunciation and reading comprehension. Click on individual syllables to hear them pronounced.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="translations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
