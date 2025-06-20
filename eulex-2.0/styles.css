@@ -289,9 +289,9 @@ p {
 
 /* Container and Layout */
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
 }
 
 /* Header Styles */
@@ -353,9 +353,9 @@ header {
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: 2rem;
+    padding: 2.5rem;
     box-shadow: var(--shadow-sm);
-    min-height: 400px;
+    min-height: 500px;
     position: relative;
 }
 
@@ -404,6 +404,7 @@ header {
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-sm);
+    min-height: 120px;
 }
 
 .syllable-widget::before {
@@ -428,6 +429,8 @@ header {
     font-weight: 600;
     color: var(--primary-color);
     box-shadow: var(--shadow-sm);
+    min-width: 60px;
+    text-align: center;
 }
 
 .syllable:hover {
@@ -448,8 +451,22 @@ header {
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: var(--shadow-sm);
+    min-width: 320px;
+}
+
+/* Enhanced Button Styles for Control Panel */
+.control-panel .btn {
+    min-height: 3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.control-panel .btn-lg {
+    min-height: 3.5rem;
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
 }
 
 /* Progress Bar */
@@ -460,6 +477,7 @@ header {
     height: 0.75rem;
     position: relative;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 0.5rem 0;
 }
 
 .progress-bar {
@@ -487,17 +505,17 @@ header {
     100% { left: 100%; }
 }
 
-/* Sliders */
+/* Range Input Styling */
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
-    height: 6px;
-    border-radius: 3px;
+    height: 8px;
+    border-radius: 4px;
     background: var(--bg-tertiary);
     outline: none;
-    margin: 1rem 0;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin: 0.5rem 0;
+    cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -513,7 +531,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     box-shadow: var(--shadow-lg);
 }
 
@@ -529,7 +547,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 input[type="range"]::-moz-range-thumb:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     box-shadow: var(--shadow-lg);
 }
 
@@ -649,17 +667,56 @@ select:focus, input[type="text"]:focus, input[type="email"]:focus, textarea:focu
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .container {
-        padding: 0 0.5rem;
+        max-width: 100%;
+        padding: 0 1rem;
     }
     
     .reading-area {
-        padding: 1rem;
+        padding: 2rem;
     }
     
     .control-panel {
+        padding: 1.5rem;
+        min-width: 280px;
+    }
+    
+    .syllable-widget {
+        min-height: 100px;
+        padding: 1.25rem;
+    }
+    
+    .syllable {
+        min-width: 50px;
+        padding: 0.4rem 0.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    .reading-area {
+        padding: 1.5rem;
+        min-height: 400px;
+    }
+    
+    .control-panel {
+        padding: 1.25rem;
+        min-width: auto;
+    }
+    
+    .syllable-widget {
+        min-height: 90px;
         padding: 1rem;
+    }
+    
+    .syllable {
+        min-width: 45px;
+        padding: 0.375rem 0.625rem;
+        font-size: 0.875rem;
     }
     
     .btn {
@@ -672,17 +729,19 @@ select:focus, input[type="text"]:focus, input[type="email"]:focus, textarea:focu
         font-size: 0.9375rem;
     }
     
+    .control-panel .btn {
+        min-height: 2.75rem;
+        font-size: 0.85rem;
+    }
+    
+    .control-panel .btn-lg {
+        min-height: 3rem;
+        font-size: 0.9rem;
+        padding: 0.875rem 1.25rem;
+    }
+    
     .story-card {
         padding: 1rem;
-    }
-    
-    .syllable-widget {
-        padding: 1rem;
-    }
-    
-    .syllable {
-        padding: 0.375rem 0.625rem;
-        font-size: 0.875rem;
     }
     
     .language-modal {
@@ -691,10 +750,46 @@ select:focus, input[type="text"]:focus, input[type="email"]:focus, textarea:focu
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+    
+    .reading-area {
+        padding: 1rem;
+        min-height: 350px;
+    }
+    
+    .control-panel {
+        padding: 1rem;
+    }
+    
+    .syllable-widget {
+        min-height: 80px;
+        padding: 0.75rem;
+    }
+    
+    .syllable {
+        min-width: 40px;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+        margin: 0.125rem;
+    }
+    
     .btn {
         padding: 0.5rem 1rem;
         font-size: 0.75rem;
         min-height: 2.5rem;
+    }
+    
+    .control-panel .btn {
+        min-height: 2.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .control-panel .btn-lg {
+        min-height: 2.75rem;
+        font-size: 0.85rem;
+        padding: 0.75rem 1rem;
     }
     
     .reading-area {
