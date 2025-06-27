@@ -1,137 +1,16 @@
-<html>
-
-<head>
-    <title>E.U.L.E.X</title>
-</head>
-<link rel="stylesheet" href="style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="script.js"></script>
-<script src="stories.js"></script>
-<SCRIPT LANGUAGE="Javascript">
-
-    var current = null;
-    var spanList = null;
-
-    var title1 = "The Hare and the Tortoise";
-    var story1 = "Once there lived in a forest a hair and a tortoise. The hare was very proud of his speed. He made fun of the tortoise for his slow speed. The tortoise challenged the hare to have a race with him. The hare accepted the challenge. The race started. The crow was the referee. The hare ran very fast. The tortoise was left much behind. The hare stopped to take rest under a tree. He fell asleep. The tortoise passed him and reached the winning post. The hare woke up and ran as fast as he could. He saw that the tortoise was already there at the winning post. He had won the race. He went on conspicuously. So wicked do destruction and secrecy appear to honest minds, that Mr. Lorry and Miss Pross, while engaged in the commission of their deed and in the removal of its traces, almost felt, and almost looked, like accomplices in a horrible crime.";
-
-    var title2 = "The ambitious astronomer";
-    var story2 = 'There lived an astronomer who was very much involved in his observations. He often used to look up at the sky at night and start observing the stars. Once, as he walked looking up at the stars, his leg slipped and he fell into a ditch. He started shouting. A passer-by, who heard his shouts, helped him out of the ditch and asked, "How did you fall into this ditch?" The astronomer replied, "I was so engrossed in my observations that I did not notice the ditch". The passer-by asked, "How do you expect to discover things when you fail to take note of things under your nose?" The astronomer walked away with a sad face.';
-
-
-
-    var title4 = "Honesty is the best policy";
-    var story4 = 'A milkman became very wealthy through callous means. He had to cross a river daily to reach the city where his customers lived. He mixed the water of the river generously with the milk that he sold for a good profit. One day he went around collecting the dues in order to celebrate the wedding of his son. With the large amount thus collected he purchased plenty of rich clothes and glittering gold ornaments. But while crossing the river the boat capsized and all his costly purchases were swallowed by the river. The milk vendor was speechless with grief. At that time he heard a voice that came from the river, "Do not weep. What you have lost is only the illicit gains you earned through cheating your customers." ';
-
-
-    var title6 = "The drought hits Georgia";
-    var story6 = 'The state of Georgia is in the midst of a major drought. Experts predict that, unless it rains cats and dogs real soon, the whole city of Atlanta will have no drinking water in four months. Lake Lanier, the source of Atlanta\'s water delivery system, is now at only 20 percent of its usual level. To make matters worse, when Georgia water officials tried to block the flow of the Chattahoochee River southward to Alabama and Florida, those states threatened Georgia with lawsuits. They claimed that they were just as desperate for and entitled to that river water as Georgia was. The Georgia Civil Air Patrol has been trying to seed the clouds overhead for the last six months, to no avail. State officials asked the local Cherokee Indians to do a rain dance. The Indians told them they would do a rain dance when the state returned all the land that it stole from the Cherokees. Officials hired the nation\'s number one water finder. He found a still for making whiskey. Finally, the governor himself held a press conference on the steps of the state capitol building. He asked all the media to bow their heads, raised his hands to heaven, and prayed. "Lord, we are asking for relief, not for us, but for the sick and the young in this state. Thank you, oh most powerful Lord". The Georgia Association of Atheists immediately sued the governor for conducting prayer sessions on state property.';
-
-
-
-    var ptitle1 = "The internet";
-    var poem1 = "It is the deadliest trap I swear <br> Makes me sometimes come up for air <br> An ocean whose tides never seem to ebb <br> Everyone calls it the worldwide web. <br> <br> It beckons the aimless wanderer <br> With many delicious bits and bytes <br> And even the more discerning surfer <br> Can google down to useful sites.  <br> The television is not alone to blame <br> The internet is all the same <br> While the former cooked us on the couch <br> The latter merely makes us slouch <br> This might well be the age <br> But the medium is not the message <br> Said my father times umpteen <br> Having played his games off the screen";
-    var title9 = "The story of the   bicycle";
-    var story9 = "You may be surprised to learn that the humble bicycle was invented several years later than the railway locomotive! But the two-wheeler has come a long way since the day it was invented by a Scottish blacksmith, Kirkpatrick MacMillan, back (it is said) in 1839. MacMillan developed his bike from an older wheeled vehicle, called a \"hobby horse\". This was a wooden horse with two wheels. The rider sat on the horse, and pushed the vehicle along with his feet. It was not a very fast or safe vehicle, since it had no steering and no brakes. MacMillan, nicknamed Mad Pate, modified the hobby horse, by adding a system of articulated bars. The rider could push the bars back and forwards with his feet, and make the back wheel go round. He could also steer the bike, as the front wheel could be turned. To demonstrate his invention, he cycled 60 miles to Glasgow! It must have been a terrible journey, on the roads of the day! Pate's bike did not have rubber tyres or springs. Mad Pate was not recognised in his time, but other people became interested in bicycles. Twenty-five years later, a Frenchman called Pierre Lallemant designed and patented the first bicycle with rotary pedals; and in 1876, H.J.Lawson added another basic feature, \"chain-drive\". Other features, such as rubber tyres and gears, have appeared since then; but the basic bicycle has not changed. Since then the bicycle has had a magnificent fortune. Today, it is probably the most common form of transport in the world, especially in the Third World; and non-polluting and easy to ride, it has a big future as the town vehicle of tomorrow. Thanks Pate! ";
-
-    var title10 = "The merchant and his donkey";
-    var story10 = "One beautiful spring morning, a merchant loaded his donkey with bags of salt to go to the market in order to sell them. The merchant and his donkey were walking along together. They had not walked far when they reached a river on the road. Unfortunately, the donkey slipped and fell into the river and noticed that the bags of salt loaded on his back became lighter. There was nothing the merchant could do, except return home where he loaded his donkey with more bags of salt. As they reached the slippery riverbank, now deliberately, the donkey fell into the river and wasted all the bags of salt on its back again. The merchant quickly discovered that the donkey had a trick. He then returned home again but re-loaded his donkey with bags of sponges. The foolish, tricky donkey again set on its way. On reaching the river he again fell into the water. But instead of the load becoming lighter, it became heavier. The merchant laughed at him and told him that people who are too clever sometimes over reach themselves.";
-    function create_text(story, title) {
-        var words = story.split(" ");
-        var myNode = document.getElementById("text");
-        while (myNode.firstChild) {
-            myNode.removeChild(myNode.firstChild);
-        }
-
-        for (var i = 0; i < words.length; i++) {
-            var rawWord = words[i].replace(/[^A-Za-z0-9]/g, "");
-            $(".story").append('<span class="special1"  onclick="go();" id="' + rawWord + '" syllable=' + getSyllable(rawWord) + ' title="' + rawWord + '">' + words[i] + ' </span>');
-        }
-        document.getElementById("title").innerHTML = title;
-        spanList = document.getElementById('text').getElementsByTagName('span');
-        console.log(spanList);
-        current = 0;
-        spanList[current].className = "special";
-        var msg = new SpeechSynthesisUtterance(spanList[current].title);
-
-
-
-        msg.voice = voices[3];
-        speechSynthesis.speak(msg);
-        wS();
-
-    }
-
-    function set_up() {
-
-        document.write('<style> html { font-family: Helvetica, Arial, sans-serif; font-size: 100%; background: rgb(28, 28, 31); } </style>');
-        document.write('<style>h1 { font-weight: bold; text-shadow:3px 3px #FF0000; color: white; font-size: 42px; } </style>');
-        document.write('<style>fieldset.awesome {background-color: #4A789C ; color:white; text-align:center; font-size:3em; font-style:oblique;  vertical-align:middle; border-color: white; height: 4%;} </style>');
-        document.write('<style> .title_block {display:inline;vertical-align:top;height:10%;} </style>');
-        document.write('<style> .title {float:left;  color:white; font-size: 3em; border-color: white; width: 50%;} </style>');
-        document.write('<style> .menus {color:white; height: 70;margin-left: 50%;vertical-align: top;} </style>');
-        document.write('<style> .menus a {font-size: 28px;} </style>');
-        document.write('<style> .menus .m-btn {font-size: 28px;} </style>');
-        document.write('<style> .menus .m-btn .submenu {display:none;} </style>');
-        document.write('<style> .menus .m-btn .submenu ul {color:yellow;text-align:left} </style>');
-        document.write('<style> .menus .m-btn .submenu ul li {color:orange;font-size: 20px;margin-top:10px} </style>');
-        document.write('<style> .menus .m-btn:hover .submenu {display:block;} </style>');
-
-        document.write('<font color="white">');
-        document.write('<link href="css/m-styles.min.css" rel="stylesheet">');
-        document.write('<link href="skill.css" rel="stylesheet" hreflang="en">');
-        document.write('<style>  article, aside, figure, footer, header, hgroup,   menu, nav, section { display: block; }   span.special1 {  color:#333333;  display: inline;  font-family:  Sans-serif;  position: relative;   font-size: 2em;  }</style>');
-        document.write('<style>  span.special {    display: inline;    position: relative;   font-size: 2em; color: #ffff00;  background-color: #000000;  padding: 0.1em;    border: 0px solid #886699; align:center; }</style>');
-
-        document.write('<style> .story_panel{border-color:black;display:inline; margin-top:14%;width: 100%;}</style>');
-        document.write('<style> .gbar{display:block;margin-left:80%;height:60%;color: #ffffff;background-color:#7fca9f;overflow:scroll;}</style>');
-        document.write('<style> .hell{display:block;margin-left:80%;height:21%;background-color:#7fca9f;horizontal-align:center;color:black;font-size:1.5em;align:center;}</style>');
-        document.write('<style> .story{float:left;border-color:black;display:block;background-color:#FFDAB9;overflow:scroll; width: 80%;}</style>');
-        document.write('<style> .buttons {background-color: black; width:20%;height:200px;} </style>')
-        document.write('<style> .skill {background-color: black; border-color: white;}</style>');
-        document.write('<style> .instr {display:block;margin-left:80%;height:9.9%;horizontal-align:center;color:white;font-size:1.5em;text-align:center;}</style>');
-
-
-        document.write('<div class="title_block">');
-        document.write('<div class="title" id="title"></div>');
-        document.write('<div class="menus">');
-        document.write('<div class="m-btn rnd green" id="more"> <i> More Stories  </i>');
-        document.write('<div class="submenu" id="morestories">');
-        document.write('<ul>Beginner<hr><li onclick="create_text(story1,title1)">The hare and the tortoise</li><li onclick="create_text(story4,title4)">Honesty is the best policy</li><li onclick="create_text(story2,title2)">The ambitious astronomer</li></ul>');
-        document.write('<ul>Intermediate<hr><li onclick="create_text(story6,title6)">The drought hit Georgia</li> <li onclick="create_text(story10, title10)">The merchant and his donkey</li></ul>');
-        document.write('<ul>Advanced <hr><li onclick="create_text(story9,title9)">The story of the bicycle</li><li onclick="create_text(storynew, titlenew)">An extract from \'Wind song\'</li></ul>');
-        document.write('<ul>Poems <hr> <li onclick="create_text(poem1,ptitle1)">The internet</li><li onclick="create_text(poem2, poem2title)">The road not taken</li></ul>');
-        document.write('</div>');
-        document.write('</div>');
-        document.write('<a href="https://www.youtube.com/watch?v=7gCArR3hQ2I" class="m-btn rnd green"> <i> Help video </i> </a>');
-        document.write('<a href="vMask.html" class="m-btn rnd green"> <i> Home page  </i> </a>');
-        document.write('</div>');
-
-
-        document.write('<fieldset class="awesome" id="demo"></fieldset>');
-
-
-        document.write('<div class="story_panel">');
-        document.write('<body onkeypress="proceed()"> <div class="story" id="text" mydiv="read" style="float:left; height:450px; width: 80%"></div>');
-        document.write('<div class="gbar_panel">');
-        document.write('<div class="gbar" id="sound" onclick="Listen();" style="display:table-cell; vertical-align:middle; horizontal-align:middle; text-align:center" ><img src="img/Speaker_Icon.svg" width="70%"> </div>')
-        document.write('<hr> &nbsp; &nbsp; &nbsp; <a href="#" class="m-btn  bigicn-only rnd red" onclick="button_clicked();" id="b"><i id="b"><b id="b">Next word</b></i></a><a href="#" class="m-btn  bigicn-only rnd purple" onclick="button_clicked2();" id="n"><i id="n"><b id="n">Previous word</b></i></a>');
-        document.write('<div class="instr"><br><a href="#" class="m-btn rnd green" onclick="speak();"> <i onclick="speak();"> <b onclick="speak();"> More information on the <br> highlighted word </b> </i> </a></div>');
-
-
-
-
-        window.create_text(story2, title2);
-
-
-    }
-
-
-
-</SCRIPT>
-
-
-<BODY onload="set_up()" onkeypress="gothere();">
-</Body>
-
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EULEX - Learn to Read</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
