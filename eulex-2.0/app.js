@@ -1,18 +1,26 @@
-// EULEX 2.0 - Enhanced Learning Experience
+// EULEX - Enhanced Learning Experience
 class EULEXApp {
     constructor() {
-        this.currentStory = null;
-        this.currentWordIndex = 0;
-        this.words = [];
-        this.sentences = [];
-        this.currentSentenceIndex = 0;
+        this.settings = this.loadSettings();
         this.speechSynthesis = window.speechSynthesis;
         this.voices = [];
-        this.selectedVoice = null;
-        this.speechRate = 1.0;
+        this.speechRate = this.settings.speechRate;
         this.isPlaying = false;
-        this.settings = this.loadSettings();
-        this.languageManager = window.languageManager;
+        
+        // Reading state
+        this.stories = [];
+        this.currentStory = null;
+        this.words = [];
+        this.sentences = [];
+        this.currentWordIndex = 0;
+        this.currentSentenceIndex = 0;
+        
+        // Settings state management
+        this.tempSettings = { ...this.settings };
+        this.settingsChanged = false;
+        
+        // Language management
+        this.languageManager = new LanguageManager();
         
         this.init();
     }
@@ -62,15 +70,29 @@ class EULEXApp {
         document.documentElement.style.fontSize = `${this.settings.fontSize}px`;
         
         // Apply theme
-        document.body.className = document.body.className.replace(/theme-\w+/g, '');
-        if (this.settings.theme !== 'light') {
-            document.body.classList.add(`theme-${this.settings.theme}`);
-        }
+        document.documentElement.setAttribute('data-theme', this.settings.theme);
         
         // Apply speech rate
         this.speechRate = this.settings.speechRate;
-        document.getElementById('speedSlider').value = this.speechRate;
-        document.getElementById('speedValue').textContent = `${this.speechRate}x`;
+        
+        // Update UI elements
+        const speedSlider = document.getElementById('speedSlider');
+        const speedValue = document.getElementById('speedValue');
+        if (speedSlider) speedSlider.value = this.speechRate;
+        if (speedValue) speedValue.textContent = `${this.speechRate}x`;
+        
+        // Update font size display
+        const fontSizeValue = document.getElementById('fontSizeValue');
+        if (fontSizeValue) fontSizeValue.textContent = `${this.settings.fontSize}px`;
+        
+        // Update story text font size if available
+        const storyText = document.getElementById('storyText');
+        if (storyText) {
+            storyText.style.fontSize = `${this.settings.fontSize}px`;
+        }
+        
+        // Update theme buttons
+        this.updateThemeButtons(this.settings.theme);
     }
 
     loadVoices() {
@@ -120,6 +142,8 @@ class EULEXApp {
         // Settings
         document.getElementById('settingsBtn').addEventListener('click', () => this.showSettings());
         document.getElementById('closeSettings').addEventListener('click', () => this.hideSettings());
+        document.getElementById('cancelSettings').addEventListener('click', () => this.cancelSettings());
+        document.getElementById('saveSettings').addEventListener('click', () => this.saveSettingsChanges());
         document.getElementById('helpBtn').addEventListener('click', () => this.showHelp());
         document.getElementById('closeHelp').addEventListener('click', () => this.hideHelp());
         
@@ -129,34 +153,38 @@ class EULEXApp {
         // Keyboard navigation
         document.addEventListener('keydown', (e) => this.handleKeyPress(e));
         
-        // Settings controls
-        document.getElementById('speedSlider').addEventListener('input', (e) => {
-            this.speechRate = parseFloat(e.target.value);
-            this.settings.speechRate = this.speechRate;
-            document.getElementById('speedValue').textContent = `${this.speechRate}x`;
-            this.saveSettings();
-        });
+        // Settings controls - now use temporary settings
+        const speedSlider = document.getElementById('speedSlider');
+        if (speedSlider) {
+            speedSlider.addEventListener('input', (e) => {
+                this.tempSettings.speechRate = parseFloat(e.target.value);
+                this.settingsChanged = true;
+                const speedValue = document.getElementById('speedValue');
+                if (speedValue) {
+                    speedValue.textContent = `${this.tempSettings.speechRate}x`;
+                }
+            });
+        }
         
         document.getElementById('voiceSelect').addEventListener('change', (e) => {
-            this.settings.voice = e.target.value;
-            this.saveSettings();
+            this.tempSettings.voice = e.target.value;
+            this.settingsChanged = true;
         });
         
         document.getElementById('fontSizeSlider').addEventListener('input', (e) => {
             const fontSize = parseInt(e.target.value);
-            this.settings.fontSize = fontSize;
+            this.tempSettings.fontSize = fontSize;
+            this.settingsChanged = true;
             document.getElementById('fontSizeValue').textContent = `${fontSize}px`;
-            document.documentElement.style.fontSize = `${fontSize}px`;
-            this.saveSettings();
         });
         
         // Theme buttons
         document.querySelectorAll('.theme-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const theme = e.target.dataset.theme;
-                this.settings.theme = theme;
-                this.applySettings();
-                this.saveSettings();
+                this.tempSettings.theme = theme;
+                this.settingsChanged = true;
+                this.updateThemeButtons(theme);
             });
         });
 
@@ -168,6 +196,12 @@ class EULEXApp {
         
         document.getElementById('languageSelect')?.addEventListener('change', (e) => {
             this.languageManager.setLanguage(e.target.value);
+        });
+        
+        // Settings language selection
+        document.getElementById('settingsLanguageSelect')?.addEventListener('change', (e) => {
+            this.tempSettings.language = e.target.value;
+            this.settingsChanged = true;
         });
         
         // Language button in header
@@ -469,29 +503,26 @@ Having played his games off the screen`
 
     highlightCurrentWord() {
         // Remove previous highlights
-        document.querySelectorAll('.word-current').forEach(el => {
-            el.classList.remove('word-current');
-            el.classList.add('word-highlight');
+        document.querySelectorAll('.highlighted-word').forEach(el => {
+            el.classList.remove('highlighted-word');
         });
-        
+
         // Highlight current word
         const currentWordElement = document.querySelector(`[data-index="${this.currentWordIndex}"]`);
         if (currentWordElement) {
-            currentWordElement.classList.remove('word-highlight');
-            currentWordElement.classList.add('word-current');
-            
+            currentWordElement.classList.add('highlighted-word');
             // Scroll to word if needed
             currentWordElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-        
+
         // Update current word display
         const currentWord = this.words[this.currentWordIndex];
         const cleanWord = this.cleanWord(currentWord);
         const syllables = this.getSyllables(cleanWord);
-        
+
         document.getElementById('currentWord').textContent = cleanWord;
         this.updateSyllableWidget(syllables);
-        
+
         // Update current sentence
         this.currentSentenceIndex = this.wordSentenceMap[this.currentWordIndex] || 0;
     }
@@ -546,6 +577,29 @@ Having played his games off the screen`
         document.getElementById('progressBar').style.width = `${progress}%`;
         document.getElementById('progressPercent').textContent = `${Math.round(progress)}%`;
         document.getElementById('currentPosition').textContent = `${this.currentWordIndex + 1} / ${this.words.length}`;
+
+        // Show completion modal if finished
+        if (progress >= 100) {
+            const completionModal = document.getElementById('completionModal');
+            const completionMessage = document.getElementById('completionMessage');
+            const completionThanksBtn = document.getElementById('completionThanksBtn');
+            if (completionModal && completionMessage && completionThanksBtn) {
+                // Set message and button text based on language
+                const lang = this.settings.language || 'en';
+                const t = translations[lang] || translations['en'];
+                completionMessage.textContent = t['congrats'] || 'Congratulations! You finished the story!';
+                completionThanksBtn.textContent = t['thanks'] || 'Thanks';
+                completionModal.classList.remove('hidden');
+                completionModal.classList.add('flex');
+                completionThanksBtn.onclick = () => {
+                    completionModal.classList.add('hidden');
+                    completionModal.classList.remove('flex');
+                    this.currentWordIndex = 0;
+                    this.highlightCurrentWord();
+                    this.updateProgress();
+                };
+            }
+        }
     }
 
     nextWord() {
@@ -720,6 +774,10 @@ Having played his games off the screen`
     showSettings() {
         const modal = document.getElementById('settingsModal');
         if (modal) {
+            // Initialize temporary settings with current settings
+            this.tempSettings = { ...this.settings };
+            this.settingsChanged = false;
+            
             modal.classList.remove('hidden');
             this.populateLanguageSelector();
             this.populateVoiceSelect();
@@ -731,6 +789,11 @@ Having played his games off the screen`
         const modal = document.getElementById('settingsModal');
         if (modal) {
             modal.classList.add('hidden');
+            // Reset temporary settings if not saved
+            if (this.settingsChanged) {
+                this.tempSettings = { ...this.settings };
+                this.settingsChanged = false;
+            }
         }
     }
     
@@ -752,13 +815,25 @@ Having played his games off the screen`
         const speedSlider = document.getElementById('speedSlider');
         const fontSizeSlider = document.getElementById('fontSizeSlider');
         const voiceSelect = document.getElementById('voiceSelect');
+        const languageSelect = document.getElementById('settingsLanguageSelect');
         
-        if (speedSlider) speedSlider.value = this.settings.speechRate;
-        if (fontSizeSlider) fontSizeSlider.value = this.settings.fontSize;
-        if (voiceSelect && this.settings.voice !== 'default') voiceSelect.value = this.settings.voice;
+        // Use temporary settings for display
+        const displaySettings = this.settingsChanged ? this.tempSettings : this.settings;
         
-        this.updateSpeed(this.settings.speechRate);
-        this.updateFontSize(this.settings.fontSize);
+        if (speedSlider) speedSlider.value = displaySettings.speechRate;
+        if (fontSizeSlider) fontSizeSlider.value = displaySettings.fontSize;
+        if (voiceSelect && displaySettings.voice !== 'default') voiceSelect.value = displaySettings.voice;
+        if (languageSelect && displaySettings.language) languageSelect.value = displaySettings.language;
+        
+        // Update display values
+        const speedValue = document.getElementById('speedValue');
+        const fontSizeValue = document.getElementById('fontSizeValue');
+        
+        if (speedValue) speedValue.textContent = `${displaySettings.speechRate}x`;
+        if (fontSizeValue) fontSizeValue.textContent = `${displaySettings.fontSize}px`;
+        
+        // Update theme buttons
+        this.updateThemeButtons(displaySettings.theme);
     }
     
     updateSpeed(speed) {
@@ -802,6 +877,74 @@ Having played his games off the screen`
         });
         
         this.saveSettings();
+    }
+
+    cancelSettings() {
+        // Reset temporary settings to current settings
+        this.tempSettings = { ...this.settings };
+        this.settingsChanged = false;
+        this.updateSettingsDisplay();
+        this.hideSettings();
+    }
+
+    saveSettingsChanges() {
+        if (this.settingsChanged) {
+            // Apply the temporary settings
+            this.settings = { ...this.tempSettings };
+            
+            // Apply settings immediately
+            this.applySettings();
+            
+            // Save to localStorage
+            this.saveSettings();
+            
+            // Update language if changed
+            if (this.settings.language && this.settings.language !== this.languageManager.currentLanguage) {
+                this.languageManager.setLanguage(this.settings.language);
+            }
+            
+            this.settingsChanged = false;
+            
+            // Show success feedback
+            this.showSaveFeedback();
+            
+            // Close the modal
+            this.hideSettings();
+        } else {
+            // No changes, just close
+            this.hideSettings();
+        }
+    }
+    
+    showSaveFeedback() {
+        // Create a temporary success message
+        const feedback = document.createElement('div');
+        feedback.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transform transition-all duration-300';
+        feedback.innerHTML = `
+            <i class="fas fa-check mr-2"></i>
+            <span data-i18n="settings-saved">Settings saved successfully!</span>
+        `;
+        
+        document.body.appendChild(feedback);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            feedback.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (feedback.parentNode) {
+                    feedback.parentNode.removeChild(feedback);
+                }
+            }, 300);
+        }, 3000);
+    }
+    
+    updateThemeButtons(theme) {
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.theme === theme) {
+                btn.classList.add('active');
+            }
+        });
     }
 }
 

@@ -1,8 +1,8 @@
-// EULEX 2.0 Translations
+// EULEX Translations
 const translations = {
     en: {
         // Language Selection Modal
-        "welcome": "Welcome to EULEX 2.0",
+        "welcome": "Welcome to EULEX",
         "select-language": "Please select your preferred language",
         "native-language": "Native Language",
         "start-learning": "Start Learning",
@@ -15,7 +15,7 @@ const translations = {
         
         // Reading Interface
         "words": "words",
-        "est-time": "Est. 0 min",
+        "est-time": "Est. {time} min",
         "back-to-stories": "Back to Stories",
         "current-word": "Current Word",
         "syllable-breakdown": "Syllable Breakdown",
@@ -41,9 +41,12 @@ const translations = {
         "sepia": "Sepia",
         "small": "Small",
         "large": "Large",
+        "cancel": "Cancel",
+        "save": "Save",
+        "settings-saved": "Settings saved successfully!",
         
         // Help
-        "how-to-use": "How to Use EULEX 2.0",
+        "how-to-use": "How to Use EULEX",
         "getting-started": "Getting Started",
         "getting-started-desc": "Choose a story from the selection panel. Stories are organized by difficulty level.",
         "navigation": "Navigation",
@@ -55,18 +58,22 @@ const translations = {
         "audio-sentence": "Click the play icon to hear the entire sentence",
         "audio-speed": "Adjust reading speed using the slider",
         "syllable-display": "Syllable Display",
-        "syllable-desc": "Each word is automatically split into syllables to help with pronunciation and reading comprehension. Click on individual syllables to hear their pronunciation."
+        "syllable-desc": "Each word is automatically split into syllables to help with pronunciation and reading comprehension. Click on individual syllables to hear them pronounced.",
+        
+        // Completion Modal
+        "congrats": "Congratulations! You finished the story!",
+        "thanks": "Thanks"
     },
     
     es: {
-        "welcome": "Bienvenido a EULEX 2.0",
+        "welcome": "Bienvenido a EULEX",
         "select-language": "Por favor selecciona tu idioma preferido",
         "native-language": "Idioma Nativo",
         "start-learning": "Comenzar a Aprender",
         "enhanced-learning": "Experiencia de Aprendizaje Mejorada",
         "choose-story": "Elige una Historia",
         "words": "palabras",
-        "est-time": "Tiempo est. 0 min",
+        "est-time": "Tiempo est. {time} min",
         "back-to-stories": "Volver a Historias",
         "current-word": "Palabra Actual",
         "syllable-breakdown": "División de Sílabas",
@@ -90,7 +97,10 @@ const translations = {
         "sepia": "Sepia",
         "small": "Pequeño",
         "large": "Grande",
-        "how-to-use": "Cómo Usar EULEX 2.0",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "settings-saved": "¡Configuración guardada exitosamente!",
+        "how-to-use": "Cómo Usar EULEX",
         "getting-started": "Comenzar",
         "getting-started-desc": "Elige una historia del panel de selección. Las historias están organizadas por nivel de dificultad.",
         "navigation": "Navegación",
@@ -102,21 +112,25 @@ const translations = {
         "audio-sentence": "Haz clic en el icono de reproducción para escuchar toda la frase",
         "audio-speed": "Ajusta la velocidad de lectura usando el deslizador",
         "syllable-display": "Visualización de Sílabas",
-        "syllable-desc": "Cada palabra se divide automáticamente en sílabas para ayudar con la pronunciación y comprensión de lectura. Haz clic en sílabas individuales para escuchar su pronunciación."
+        "syllable-desc": "Cada palabra se divide automáticamente en sílabas para ayudar con la pronunciación y comprensión de lectura. Haz clic en sílabas individuales para escucharlas pronunciadas.",
+        
+        // Completion Modal
+        "congrats": "¡Felicitaciones! ¡Terminaste la historia!",
+        "thanks": "Gracias"
     },
     
     fr: {
-        "welcome": "Bienvenue sur EULEX 2.0",
+        "welcome": "Bienvenue sur EULEX",
         "select-language": "Veuillez sélectionner votre langue préférée",
         "native-language": "Langue Maternelle",
         "start-learning": "Commencer à Apprendre",
         "enhanced-learning": "Expérience d'Apprentissage Améliorée",
         "choose-story": "Choisir une Histoire",
         "words": "mots",
-        "est-time": "Temps est. 0 min",
+        "est-time": "Temps est. {time} min",
         "back-to-stories": "Retour aux Histoires",
         "current-word": "Mot Actuel",
-        "syllable-breakdown": "Décomposition Syllabique",
+        "syllable-breakdown": "Décomposition des Syllabes",
         "click-syllables": "Cliquez sur les syllabes pour entendre la prononciation",
         "hear-word": "Entendre le Mot",
         "hear-sentence": "Entendre la Phrase",
@@ -137,7 +151,10 @@ const translations = {
         "sepia": "Sépia",
         "small": "Petit",
         "large": "Grand",
-        "how-to-use": "Comment Utiliser EULEX 2.0",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "settings-saved": "Paramètres enregistrés avec succès !",
+        "how-to-use": "Comment Utiliser EULEX",
         "getting-started": "Commencer",
         "getting-started-desc": "Choisissez une histoire dans le panneau de sélection. Les histoires sont organisées par niveau de difficulté.",
         "navigation": "Navigation",
@@ -147,20 +164,24 @@ const translations = {
         "audio-features": "Fonctionnalités Audio",
         "audio-word": "Cliquez sur l'icône du haut-parleur pour entendre le mot actuel prononcé",
         "audio-sentence": "Cliquez sur l'icône de lecture pour entendre toute la phrase",
-        "audio-speed": "Ajustez la vitesse de lecture en utilisant le curseur",
+        "audio-speed": "Ajustez la vitesse de lecture à l'aide du curseur",
         "syllable-display": "Affichage des Syllabes",
-        "syllable-desc": "Chaque mot est automatiquement divisé en syllabes pour aider à la prononciation et à la compréhension de lecture. Cliquez sur des syllabes individuelles pour entendre leur prononciation."
+        "syllable-desc": "Chaque mot est automatiquement divisé en syllabes pour aider à la prononciation et à la compréhension de lecture. Cliquez sur des syllabes individuelles pour les entendre prononcées.",
+        
+        // Completion Modal
+        "congrats": "Félicitations ! Vous avez terminé l'histoire !",
+        "thanks": "Merci"
     },
     
     de: {
-        "welcome": "Willkommen bei EULEX 2.0",
+        "welcome": "Willkommen bei EULEX",
         "select-language": "Bitte wählen Sie Ihre bevorzugte Sprache",
         "native-language": "Muttersprache",
         "start-learning": "Lernen Beginnen",
         "enhanced-learning": "Verbesserte Lernerfahrung",
         "choose-story": "Geschichte Auswählen",
         "words": "Wörter",
-        "est-time": "Geschätzte Zeit 0 min",
+        "est-time": "Geschätzte Zeit {time} Min",
         "back-to-stories": "Zurück zu Geschichten",
         "current-word": "Aktuelles Wort",
         "syllable-breakdown": "Silbentrennung",
@@ -168,8 +189,8 @@ const translations = {
         "hear-word": "Wort Hören",
         "hear-sentence": "Satz Hören",
         "pause": "Pause",
-        "previous": "Zurück",
-        "next": "Weiter",
+        "previous": "Vorherige",
+        "next": "Nächste",
         "progress": "Fortschritt",
         "reading-speed": "Lesegeschwindigkeit",
         "slow": "Langsam",
@@ -178,13 +199,16 @@ const translations = {
         "language": "Sprache",
         "voice": "Stimme",
         "font-size": "Schriftgröße",
-        "theme": "Design",
+        "theme": "Thema",
         "light": "Hell",
         "dark": "Dunkel",
         "sepia": "Sepia",
         "small": "Klein",
         "large": "Groß",
-        "how-to-use": "Wie man EULEX 2.0 verwendet",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "settings-saved": "Einstellungen erfolgreich gespeichert!",
+        "how-to-use": "Wie man EULEX verwendet",
         "getting-started": "Erste Schritte",
         "getting-started-desc": "Wählen Sie eine Geschichte aus dem Auswahlbereich. Geschichten sind nach Schwierigkeitsgrad organisiert.",
         "navigation": "Navigation",
@@ -196,24 +220,28 @@ const translations = {
         "audio-sentence": "Klicken Sie auf das Wiedergabe-Symbol, um den gesamten Satz zu hören",
         "audio-speed": "Passen Sie die Lesegeschwindigkeit mit dem Schieberegler an",
         "syllable-display": "Silbenanzeige",
-        "syllable-desc": "Jedes Wort wird automatisch in Silben unterteilt, um bei der Aussprache und dem Leseverständnis zu helfen. Klicken Sie auf einzelne Silben, um ihre Aussprache zu hören."
+        "syllable-desc": "Jedes Wort wird automatisch in Silben unterteilt, um bei der Aussprache und dem Leseverständnis zu helfen. Klicken Sie auf einzelne Silben, um sie ausgesprochen zu hören.",
+        
+        // Completion Modal
+        "congrats": "Gratulation! Sie haben die Geschichte abgeschlossen!",
+        "thanks": "Danke"
     },
     
     it: {
-        "welcome": "Benvenuto in EULEX 2.0",
+        "welcome": "Benvenuto in EULEX",
         "select-language": "Seleziona la tua lingua preferita",
         "native-language": "Lingua Madre",
         "start-learning": "Inizia ad Imparare",
         "enhanced-learning": "Esperienza di Apprendimento Migliorata",
         "choose-story": "Scegli una Storia",
         "words": "parole",
-        "est-time": "Tempo stimato 0 min",
+        "est-time": "Tempo stimato {time} min",
         "back-to-stories": "Torna alle Storie",
         "current-word": "Parola Corrente",
-        "syllable-breakdown": "Divisione in Sillabe",
+        "syllable-breakdown": "Scomposizione delle Sillabe",
         "click-syllables": "Clicca sulle sillabe per sentire la pronuncia",
-        "hear-word": "Ascolta Parola",
-        "hear-sentence": "Ascolta Frase",
+        "hear-word": "Sentire la Parola",
+        "hear-sentence": "Sentire la Frase",
         "pause": "Pausa",
         "previous": "Precedente",
         "next": "Successivo",
@@ -231,7 +259,10 @@ const translations = {
         "sepia": "Seppia",
         "small": "Piccolo",
         "large": "Grande",
-        "how-to-use": "Come Usare EULEX 2.0",
+        "cancel": "Annulla",
+        "save": "Salva",
+        "settings-saved": "Impostazioni salvate con successo!",
+        "how-to-use": "Come Usare EULEX",
         "getting-started": "Iniziare",
         "getting-started-desc": "Scegli una storia dal pannello di selezione. Le storie sono organizzate per livello di difficoltà.",
         "navigation": "Navigazione",
@@ -242,19 +273,23 @@ const translations = {
         "audio-word": "Clicca sull'icona dell'altoparlante per sentire la parola corrente pronunciata",
         "audio-sentence": "Clicca sull'icona di riproduzione per sentire l'intera frase",
         "audio-speed": "Regola la velocità di lettura usando il cursore",
-        "syllable-display": "Visualizzazione Sillabe",
-        "syllable-desc": "Ogni parola viene automaticamente divisa in sillabe per aiutare con la pronuncia e la comprensione della lettura. Clicca su sillabe individuali per sentire la loro pronuncia."
+        "syllable-display": "Visualizzazione delle Sillabe",
+        "syllable-desc": "Ogni parola viene automaticamente divisa in sillabe per aiutare con la pronuncia e la comprensione della lettura. Clicca su sillabe individuali per sentirle pronunciate.",
+        
+        // Completion Modal
+        "congrats": "Congratulazioni! Hai completato la storia!",
+        "thanks": "Grazie"
     },
     
     pt: {
-        "welcome": "Bem-vindo ao EULEX 2.0",
+        "welcome": "Bem-vindo ao EULEX",
         "select-language": "Por favor selecione seu idioma preferido",
         "native-language": "Língua Nativa",
         "start-learning": "Começar a Aprender",
         "enhanced-learning": "Experiência de Aprendizagem Aprimorada",
         "choose-story": "Escolher uma História",
         "words": "palavras",
-        "est-time": "Tempo est. 0 min",
+        "est-time": "Tempo est. {time} min",
         "back-to-stories": "Voltar às Histórias",
         "current-word": "Palavra Atual",
         "syllable-breakdown": "Divisão de Sílabas",
@@ -278,7 +313,10 @@ const translations = {
         "sepia": "Sépia",
         "small": "Pequeno",
         "large": "Grande",
-        "how-to-use": "Como Usar o EULEX 2.0",
+        "cancel": "Cancelar",
+        "save": "Salvar",
+        "settings-saved": "Configurações salvas com sucesso!",
+        "how-to-use": "Como Usar o EULEX",
         "getting-started": "Começar",
         "getting-started-desc": "Escolha uma história do painel de seleção. As histórias são organizadas por nível de dificuldade.",
         "navigation": "Navegação",
@@ -287,21 +325,25 @@ const translations = {
         "nav-click": "Clique em qualquer palavra para pular para ela",
         "audio-features": "Recursos de Áudio",
         "audio-word": "Clique no ícone do alto-falante para ouvir a palavra atual pronunciada",
-        "audio-sentence": "Clique no ícone de reprodução para ouvir a frase inteira",
+        "audio-sentence": "Clique no ícone de reprodução para ouvir toda a frase",
         "audio-speed": "Ajuste a velocidade de leitura usando o controle deslizante",
         "syllable-display": "Exibição de Sílabas",
-        "syllable-desc": "Cada palavra é automaticamente dividida em sílabas para ajudar com a pronúncia e compreensão de leitura. Clique em sílabas individuais para ouvir sua pronúncia."
+        "syllable-desc": "Cada palavra é automaticamente dividida em sílabas para ajudar com a pronúncia e compreensão de leitura. Clique em sílabas individuais para ouvi-las pronunciadas.",
+        
+        // Completion Modal
+        "congrats": "Parabéns! Você concluiu a história!",
+        "thanks": "Obrigado"
     },
     
     ru: {
-        "welcome": "Добро пожаловать в EULEX 2.0",
-        "select-language": "Пожалуйста, выберите предпочитаемый язык",
+        "welcome": "Добро пожаловать в EULEX",
+        "select-language": "Пожалуйста, выберите ваш предпочитаемый язык",
         "native-language": "Родной Язык",
         "start-learning": "Начать Обучение",
         "enhanced-learning": "Улучшенный Опыт Обучения",
         "choose-story": "Выбрать Историю",
         "words": "слов",
-        "est-time": "Примерное время 0 мин",
+        "est-time": "Примерное время {time} мин",
         "back-to-stories": "Вернуться к Историям",
         "current-word": "Текущее Слово",
         "syllable-breakdown": "Разбивка по Слогам",
@@ -309,8 +351,8 @@ const translations = {
         "hear-word": "Услышать Слово",
         "hear-sentence": "Услышать Предложение",
         "pause": "Пауза",
-        "previous": "Предыдущий",
-        "next": "Следующий",
+        "previous": "Предыдущее",
+        "next": "Следующее",
         "progress": "Прогресс",
         "reading-speed": "Скорость Чтения",
         "slow": "Медленно",
@@ -325,7 +367,10 @@ const translations = {
         "sepia": "Сепия",
         "small": "Маленький",
         "large": "Большой",
-        "how-to-use": "Как Использовать EULEX 2.0",
+        "cancel": "Отмена",
+        "save": "Сохранить",
+        "settings-saved": "Настройки сохранены успешно!",
+        "how-to-use": "Как Использовать EULEX",
         "getting-started": "Начало Работы",
         "getting-started-desc": "Выберите историю из панели выбора. Истории организованы по уровню сложности.",
         "navigation": "Навигация",
@@ -337,18 +382,22 @@ const translations = {
         "audio-sentence": "Нажмите на значок воспроизведения, чтобы услышать все предложение",
         "audio-speed": "Настройте скорость чтения с помощью ползунка",
         "syllable-display": "Отображение Слогов",
-        "syllable-desc": "Каждое слово автоматически разбивается на слоги для помощи в произношении и понимании чтения. Нажмите на отдельные слоги, чтобы услышать их произношение."
+        "syllable-desc": "Каждое слово автоматически разбивается на слоги, чтобы помочь с произношением и пониманием чтения. Нажмите на отдельные слоги, чтобы услышать их произношение.",
+        
+        // Completion Modal
+        "congrats": "Поздравляем! Вы завершили историю!",
+        "thanks": "Спасибо"
     },
     
     zh: {
-        "welcome": "欢迎使用 EULEX 2.0",
-        "select-language": "请选择您的首选语言",
+        "welcome": "欢迎使用 EULEX",
+        "select-language": "请选择您偏好的语言",
         "native-language": "母语",
         "start-learning": "开始学习",
         "enhanced-learning": "增强学习体验",
         "choose-story": "选择故事",
         "words": "个单词",
-        "est-time": "预计时间 0 分钟",
+        "est-time": "预计时间 {time} 分钟",
         "back-to-stories": "返回故事",
         "current-word": "当前单词",
         "syllable-breakdown": "音节分解",
@@ -372,7 +421,10 @@ const translations = {
         "sepia": "棕褐色",
         "small": "小",
         "large": "大",
-        "how-to-use": "如何使用 EULEX 2.0",
+        "cancel": "取消",
+        "save": "保存",
+        "settings-saved": "设置保存成功！",
+        "how-to-use": "如何使用 EULEX",
         "getting-started": "开始使用",
         "getting-started-desc": "从选择面板中选择一个故事。故事按难度级别组织。",
         "navigation": "导航",
@@ -384,18 +436,22 @@ const translations = {
         "audio-sentence": "点击播放图标听整个句子",
         "audio-speed": "使用滑块调整阅读速度",
         "syllable-display": "音节显示",
-        "syllable-desc": "每个单词都会自动分解为音节，以帮助发音和阅读理解。点击单个音节听其发音。"
+        "syllable-desc": "每个单词都会自动分解为音节，以帮助发音和阅读理解。点击单个音节听其发音。",
+        
+        // Completion Modal
+        "congrats": "恭喜！你完成了故事！",
+        "thanks": "谢谢"
     },
     
     ja: {
-        "welcome": "EULEX 2.0 へようこそ",
+        "welcome": "EULEX へようこそ",
         "select-language": "お好みの言語を選択してください",
         "native-language": "母国語",
         "start-learning": "学習を開始",
         "enhanced-learning": "強化された学習体験",
         "choose-story": "物語を選択",
         "words": "単語",
-        "est-time": "推定時間 0 分",
+        "est-time": "推定時間 {time} 分",
         "back-to-stories": "物語に戻る",
         "current-word": "現在の単語",
         "syllable-breakdown": "音節分解",
@@ -419,7 +475,10 @@ const translations = {
         "sepia": "セピア",
         "small": "小",
         "large": "大",
-        "how-to-use": "EULEX 2.0 の使い方",
+        "cancel": "キャンセル",
+        "save": "保存",
+        "settings-saved": "設定が正常に保存されました！",
+        "how-to-use": "EULEX の使い方",
         "getting-started": "始め方",
         "getting-started-desc": "選択パネルから物語を選んでください。物語は難易度別に整理されています。",
         "navigation": "ナビゲーション",
@@ -431,18 +490,22 @@ const translations = {
         "audio-sentence": "再生アイコンをクリックして文全体を聞く",
         "audio-speed": "スライダーを使用して読書速度を調整",
         "syllable-display": "音節表示",
-        "syllable-desc": "各単語は自動的に音節に分割され、発音と読解を支援します。個別の音節をクリックして発音を聞いてください。"
+        "syllable-desc": "各単語は自動的に音節に分割され、発音と読解を支援します。個別の音節をクリックして発音を聞いてください。",
+        
+        // Completion Modal
+        "congrats": "おめでとうございます！ストーリーを完了しました！",
+        "thanks": "ありがとうございます"
     },
     
     ko: {
-        "welcome": "EULEX 2.0에 오신 것을 환영합니다",
-        "select-language": "선호하는 언어를 선택해 주세요",
+        "welcome": "EULEX에 오신 것을 환영합니다",
+        "select-language": "선호하는 언어를 선택하세요",
         "native-language": "모국어",
         "start-learning": "학습 시작",
         "enhanced-learning": "향상된 학습 경험",
         "choose-story": "이야기 선택",
         "words": "단어",
-        "est-time": "예상 시간 0분",
+        "est-time": "예상 시간 {time} 분",
         "back-to-stories": "이야기로 돌아가기",
         "current-word": "현재 단어",
         "syllable-breakdown": "음절 분석",
@@ -466,7 +529,10 @@ const translations = {
         "sepia": "세피아",
         "small": "작게",
         "large": "크게",
-        "how-to-use": "EULEX 2.0 사용법",
+        "cancel": "취소",
+        "save": "저장",
+        "settings-saved": "설정이 성공적으로 저장되었습니다!",
+        "how-to-use": "EULEX 사용법",
         "getting-started": "시작하기",
         "getting-started-desc": "선택 패널에서 이야기를 선택하세요. 이야기는 난이도별로 정리되어 있습니다.",
         "navigation": "탐색",
@@ -478,18 +544,22 @@ const translations = {
         "audio-sentence": "재생 아이콘을 클릭하여 전체 문장을 들으세요",
         "audio-speed": "슬라이더를 사용하여 읽기 속도를 조정하세요",
         "syllable-display": "음절 표시",
-        "syllable-desc": "각 단어는 자동으로 음절로 분할되어 발음과 읽기 이해를 돕습니다. 개별 음절을 클릭하여 발음을 들으세요."
+        "syllable-desc": "각 단어는 자동으로 음절로 분할되어 발음과 읽기 이해를 돕습니다. 개별 음절을 클릭하여 발음을 들으세요.",
+        
+        // Completion Modal
+        "congrats": "축하합니다! 이야기를 완료했습니다!",
+        "thanks": "감사합니다"
     },
     
     ar: {
-        "welcome": "مرحباً بك في EULEX 2.0",
+        "welcome": "مرحباً بك في EULEX",
         "select-language": "يرجى اختيار لغتك المفضلة",
         "native-language": "اللغة الأم",
         "start-learning": "ابدأ التعلم",
-        "enhanced-learning": "تجربة تعلم محسنة",
+        "enhanced-learning": "تجربة تعليمية محسنة",
         "choose-story": "اختر قصة",
         "words": "كلمات",
-        "est-time": "الوقت المقدر 0 دقيقة",
+        "est-time": "الوقت المقدر {time} دقيقة",
         "back-to-stories": "العودة إلى القصص",
         "current-word": "الكلمة الحالية",
         "syllable-breakdown": "تقسيم المقاطع",
@@ -513,30 +583,37 @@ const translations = {
         "sepia": "بني",
         "small": "صغير",
         "large": "كبير",
-        "how-to-use": "كيفية استخدام EULEX 2.0",
+        "cancel": "إلغاء",
+        "save": "حفظ",
+        "settings-saved": "تم حفظ الإعدادات بنجاح!",
+        "how-to-use": "كيفية استخدام EULEX",
         "getting-started": "البدء",
         "getting-started-desc": "اختر قصة من لوحة الاختيار. القصص منظمة حسب مستوى الصعوبة.",
         "navigation": "التنقل",
         "nav-arrows": "استخدم أزرار الأسهم للتنقل كلمة بكلمة",
-        "nav-spacebar": "اضغط على شريط المسافة للانتقال إلى الكلمة التالية",
+        "nav-spacebar": "اضغط على مفتاح المسافة للانتقال إلى الكلمة التالية",
         "nav-click": "انقر على أي كلمة للانتقال إليها",
         "audio-features": "ميزات الصوت",
         "audio-word": "انقر على أيقونة السماعة لسماع نطق الكلمة الحالية",
         "audio-sentence": "انقر على أيقونة التشغيل لسماع الجملة كاملة",
         "audio-speed": "اضبط سرعة القراءة باستخدام الشريط المنزلق",
         "syllable-display": "عرض المقاطع",
-        "syllable-desc": "كل كلمة مقسمة تلقائياً إلى مقاطع لمساعدة النطق وفهم القراءة. انقر على مقاطع فردية لسماع نطقها."
+        "syllable-desc": "كل كلمة مقسمة تلقائياً إلى مقاطع لمساعدة النطق وفهم القراءة. انقر على مقاطع فردية لسماع نطقها.",
+        
+        // Completion Modal
+        "congrats": "مبروك! أنهيت القصة!",
+        "thanks": "شكراً"
     },
     
     hi: {
-        "welcome": "EULEX 2.0 में आपका स्वागत है",
+        "welcome": "EULEX में आपका स्वागत है",
         "select-language": "कृपया अपनी पसंदीदा भाषा चुनें",
         "native-language": "मातृभाषा",
         "start-learning": "सीखना शुरू करें",
         "enhanced-learning": "बेहतर सीखने का अनुभव",
         "choose-story": "कहानी चुनें",
         "words": "शब्द",
-        "est-time": "अनुमानित समय 0 मिनट",
+        "est-time": "अनुमानित समय {time} मिनट",
         "back-to-stories": "कहानियों पर वापस जाएं",
         "current-word": "वर्तमान शब्द",
         "syllable-breakdown": "शब्दांश विभाजन",
@@ -560,8 +637,11 @@ const translations = {
         "sepia": "सेपिया",
         "small": "छोटा",
         "large": "बड़ा",
-        "how-to-use": "EULEX 2.0 का उपयोग कैसे करें",
-        "getting-started": "शुरू करें",
+        "cancel": "रद्द करें",
+        "save": "सहेजें",
+        "settings-saved": "सेटिंग्स सहेजें सफलता से!",
+        "how-to-use": "EULEX का उपयोग कैसे करें",
+        "getting-started": "शुरू करना",
         "getting-started-desc": "चयन पैनल से एक कहानी चुनें। कहानियां कठिनाई स्तर के अनुसार व्यवस्थित हैं।",
         "navigation": "नेविगेशन",
         "nav-arrows": "शब्द-दर-शब्द नेविगेट करने के लिए तीर बटन का उपयोग करें",
@@ -572,7 +652,11 @@ const translations = {
         "audio-sentence": "पूरा वाक्य सुनने के लिए प्ले आइकन पर क्लिक करें",
         "audio-speed": "स्लाइडर का उपयोग करके पठन गति समायोजित करें",
         "syllable-display": "शब्दांश प्रदर्शन",
-        "syllable-desc": "प्रत्येक शब्द स्वचालित रूप से शब्दांशों में विभाजित होता है जो उच्चारण और पठन समझ में मदद करता है। उनके उच्चारण सुनने के लिए व्यक्तिगत शब्दांशों पर क्लिक करें।"
+        "syllable-desc": "प्रत्येक शब्द स्वचालित रूप से शब्दांशों में विभाजित होता है जो उच्चारण और पठन समझ में मदद करता है। व्यक्तिगत शब्दांशों पर क्लिक करके उनका उच्चारण सुनें।",
+        
+        // Completion Modal
+        "congrats": "बधाई हो! कहानी समाप्त हुई है!",
+        "thanks": "धन्यवाद"
     }
 };
 

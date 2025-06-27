@@ -1,4 +1,4 @@
-/* EULEX 2.0 - Enhanced Styles with Modern Button Library */
+/* EULEX - Enhanced Styles with Modern Button Library */
 
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
@@ -883,4 +883,13 @@ input:focus-visible {
         --border-color: #374151;
         --border-focus: #60a5fa;
     }
+}
+
+/* Highlight for current word */
+.highlighted-word {
+  background: #fde68a;
+  color: #b45309;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  padding: 0 0.2em;
 } 
